@@ -1,0 +1,27 @@
+public class Week2Challenge extends ClassToInheritFrom
+{
+    private String name;
+    
+    /* Constructors (with Constructor Chaining) */
+    public Week2Challenge()
+    {
+        This('Bob');
+    }
+    
+    public Week2Challenge(String name)
+    {
+        this.name = name;
+    }
+    
+    /* Overriding Virtual Method */
+    public override void VirtualMethod()
+    {
+        System.debug('This is the overridden virtual method.');
+    }
+    
+    /* Implementing Abstract Method */
+    public void AbstractMethod()
+    {
+        System.debug('This is an abstract method.');
+    }
+}

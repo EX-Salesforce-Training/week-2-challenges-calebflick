@@ -1,0 +1,9 @@
+public abstract class ClassToInheritFrom
+{
+    public virtual void VirtualMethod()		//virtual methods must be public
+    {
+        System.debug('This is the inherited virtual method.');
+    }
+    
+    private abstract void AbstractMethod();	//abstract methods must be private
+}
