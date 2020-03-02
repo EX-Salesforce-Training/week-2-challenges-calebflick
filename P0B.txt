@@ -1,0 +1,136 @@
+public class P0B
+{
+    public static Integer nFibonacci(Integer n)
+    {
+        Integer firstNumber = 1;
+        Integer secondNumber = 1;
+        Integer sum = 0;	//sum is 0 for 0
+        
+        for (Integer i = 1; i <= n; i++)
+        {
+            if (i == 1 || i == 2)
+            {
+                /* Sum is 1 for 1 and 2 */
+                sum = 1;
+            }
+            else
+            {
+                /* Sum is previous two numbers */
+                sum = firstNumber + secondNumber;
+                
+                /* Replace saved numbers */
+                secondNumber = firstNumber;
+                firstNumber = sum;
+            }
+        }
+        
+        return sum;
+    }
+    
+    public static Integer[] sortArray(Integer[] intList)
+    {
+        /* Using Selection Sort */
+        
+        Integer n = intList.size();
+        
+        /* Move Through Unsorted Array */
+        for (Integer i = 0; i < n - 1; i++)
+        {
+            Integer minIndex = i;
+            
+            /* Find Index of Min Element */
+            for (Integer j = i + 1; j < n; j++)
+            {
+                if (intList[j] < intList[minIndex])
+                {
+                    minIndex = j;
+                }
+            }
+            
+            /* Swap Min Element and First Unsorted Element */
+            Integer temp = intList[minIndex];
+            intList[minIndex] = intList[i];
+            intList[i] = temp;
+        }
+        
+        return intList;
+    }
+    
+    public static Integer nFactorial(Integer n)
+    {
+        Integer sum = 1;
+        
+        if (n <= 0)
+        {
+            return 1;	//0! = 1
+        }
+        else
+        {
+            /* Multiply n by Every Integer Below It */
+            for (Integer i = n; i > 0; i--)
+        	{
+            	sum *= i;
+        	}
+        }
+        
+        return sum;
+    }
+    
+    public static Integer[] rotateLeftNTimes(Integer[] intArray, Integer n)
+    {
+        /* Find Modulus of n / Array Size */
+        n = Math.mod(n, intArray.size());	//requires fewer loops in for loop
+        
+        /* Repeat n Times */
+        for (Integer i = 0; i < n; i++)
+        {
+        	Integer firstElement = intArray[0];
+        	
+            /* Rotate Left by One */
+        	for (Integer j = 0; j < intArray.size() - 1; j++)
+        	{
+            	intArray[j] = intArray[j + 1];
+        	}
+        	
+        	intArray[intArray.size() - 1] = firstElement;
+        }
+        
+        return intArray;
+    }
+    
+	public static Boolean bracketsAreBalanced(String s)
+    {
+        /* Remove Spaces from String */
+        s = s.deleteWhitespace();
+        
+        /* Check If String Is An Even Number */
+        if (Math.mod(s.length(), 2) != 0)
+        {
+            System.debug(s);
+            System.debug('String is an uneven number.');
+            
+            return false;	//return false if the string length isn't an even number
+        }
+        else
+        {
+            String reversedString = s.reverse();
+        	
+            /* Move Through String */
+        	for (Integer i = 0; i < s.length(); i++)
+        	{
+            	String char1 = s.substring(i, i + 1);
+            	String char2 = reversedString.substring(i, i + 1);
+            	
+                /* Check If Bracket Matches Reversed Bracket */
+            	if (char1 == '(' && char2 != ')' || char1 == '{' && char2 != '}' || char1 == '[' && char2 != ']')
+            	{
+                    System.debug(char1 + ' doesn\'t mirror ' + char2);
+                    
+                	return false;	//return false if the first bracket doesn't mirror the last bracket
+            	}
+        	}
+            
+            return true;
+        }
+    }
+}
